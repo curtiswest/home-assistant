@@ -1,0 +1,26 @@
+alias: "Core device connectivity monitor"
+trigger:
+  - platform: state
+    entity_id: device_tracker.xiaomi_gateway
+    to: "not_home"
+    for:
+      minutes: 8
+  - platform: state
+    entity_id: device_tracker.raspi_slave_hass
+    to: "not_home"
+    for:
+      minutes: 10
+  - platform: state
+    entity_id: device_tracker.pi_zero_front_door_camera
+    to: "not_home"
+    for:
+      minutes: 10
+  - platform: state
+    entity_id: device_tracker.front_door_sconce_light
+    to: "not_home"
+    for:
+      minutes: 10
+action:
+  - service: notify.curtis
+    data:
+      message: "The {{ trigger.from_state.attributes.friendly_name }} is inaccessible."

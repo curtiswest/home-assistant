@@ -1,0 +1,82 @@
+jarvis_message_generator:
+  sequence:
+  - service: script.jarvis_message_distributor
+    data_template:
+        msg_to_distribute: >-
+          {%- macro greeting() -%}
+            {% set greeting = [
+              "Hello, ",
+              "Hey, ",
+              "Hi, ",
+              "Hello there, ",
+              "Hey there. ",
+              "Hi there, "
+            ] %}
+            {{ greeting|random }}
+          {%- endmacro -%}
+
+          {%- macro inform() -%}
+            {% set inform = [
+              "I just want to inform you that ",
+              "I just want to let you know that ",
+              "I thought you'd like to know that ",
+              "I thought you should know that ",
+              "I think its best that I tell you that "
+            ] %}
+            {{ inform|random }}
+          {%- endmacro -%}
+
+          {%- macro mailbox() -%}
+            {% set mailbox_1 = [
+              "I saw some movement in the mailbox. ",
+              "I saw something move in the mailbox. ",
+              "I sensed some movement in the mailbox. ",
+              "something moved in the mailbox. ",
+            ] %}
+            {% set mailbox_2 = [
+              "There might be mail in there! ",
+              "You might want to check the mail. ",
+              "You may want to check it out. ",
+              "It might be worth looking in there. ",
+              "You should take a look. "
+            ] %}
+            {{ mailbox_1|random }}{{ mailbox_2|random}}
+          {%- endmacro -%}
+
+          {%- macro vacuum_alert() -%}
+
+            {% set vacuum_alert_1 = [
+              "has gotten stuck somewhere. ",
+              "has gotten stuck. ",
+              "is stuck. ",
+              "is stuck somewhere. ",
+              "think's he's stuck. "
+            ] %}
+            {% set vacuum_alert_2 = [
+              "Please give him a hand. ",
+              "Please lend him a helping hand. ",
+              "You might want to help it out. ",
+              "Could you help it out? ",
+              "Help him out! ",
+              "Please help him! "
+            ] %}
+             the robot vacuum {{ vacuum_alert_1|random }}{{ vacuum_alert_2|random }}
+          {%- endmacro -%}
+
+          {% if include_greeting == 1 %}
+            {{ greeting() }}
+          {% endif %}
+
+          {% if include_inform == 1 %}
+            {{ inform() }}
+          {% endif %}
+
+          {% if include_mailbox_alert == 1 %}
+            {{ mailbox() }}
+          {% endif %}
+
+          {% if include_vacuum_alert == 1 %}
+            {{ vacuum_alert() }}
+          {% endif %}
+
+          {{ custom_message }}

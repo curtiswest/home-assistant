@@ -1,0 +1,8 @@
+jarvis_text_message_sender:
+  sequence:
+    - condition: state
+      entity_id: input_boolean.jarvis_text_notifications
+      state: 'on'
+    - service: notify.curtis
+      data_template:
+        message: '{{ msg_to_distribute | replace("\n","") | replace("   ","") | replace("  "," ") }}'

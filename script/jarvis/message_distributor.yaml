@@ -1,0 +1,8 @@
+jarvis_message_distributor:
+  sequence:
+    - service: script.jarvis_text_message_sender
+      data_template:
+        msg_to_distribute: '{{ msg_to_distribute }}'
+    - service: script.jarvis_spoken_message_sender
+      data_template:
+        msg_to_distribute: '{{ msg_to_distribute }}'

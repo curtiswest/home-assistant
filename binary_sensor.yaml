@@ -1,0 +1,18 @@
+- platform: ping
+  name: Curtis Desktop
+  host: 192.168.1.42
+  count: 5
+  scan_interval: 7
+  device_class: connectivity
+- platform: hikvision
+  host: 192.168.1.232
+  username: admin
+  password: Admin123
+- platform: hikvision
+  host: 192.168.1.231
+  username: admin
+  password: Admin123
+# - platform: octoprint
+#   monitored_conditions:
+#     - Printing
+#     - Printing Error

@@ -1,0 +1,75 @@
+- alias: "Presence lighting for Curtis, arrive home"
+  trigger:
+    - platform: state
+      entity_id: group.curtis
+      to: 'home'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.curtis_sleeping
+        state: 'off'
+      - condition: sun
+        after: sunset
+        after_offset: "-01:00:00"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.curtis_bedroom
+        transition: 3
+
+- alias: "Presence lighting for Curtis, leave home"
+  trigger:
+    - platform: state
+      entity_id: group.curtis
+      to: 'not_home'
+      for:
+        minutes: 1
+  action:
+    - service: light.turn_off
+      data:
+        entity_id: light.curtis_bedroom
+        transition: 3
+
+- alias: 'Action lighting for Curtis, open/close door at night'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_curtis_room
+  condition:
+    - condition: state
+      entity_id: light.curtis_bedroom
+      state: 'on'
+    - condition: time
+      after: '22:00:00'
+      before: '06:00:00'
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.curtis_bedroom
+        brightness: >
+          {% if trigger.to_state.state == 'off' %}
+              255
+          {% elif trigger.to_state.state == 'on' %}
+              80
+          {% endif %}
+        transition: 1
+
+- alias: 'Action lighting for Curtis, sleeping light control'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.curtis_sleeping
+  action:
+    - service_template: >
+          {% if trigger.to_state.state == 'off' %}
+              light.turn_on
+          {% elif trigger.to_state.state == 'on' %}
+              light.turn_off
+          {% endif %}
+      data_template:
+        entity_id: light.curtis_bedroom
+        transition: >
+          {% if trigger.to_state.state == 'off' %}
+              10
+          {% elif trigger.to_state.state == 'on' %}
+              4
+          {% endif %}

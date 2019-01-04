@@ -1,0 +1,56 @@
+
+# Ignore sensitive folders.
+.storage
+.cloud
+.google.token
+
+# Ignore secrets files with passwords/keys etc.
+secrets.yaml
+.uuid
+
+# Ignore the known_devices.yaml file, containing mac addresses etc.
+known_devices.yaml
+
+ip_bans.yaml
+www/img/*
+
+# Exclude development, caches and libs
+*/__pycache__/
+deps
+tts
+
+# Ignore logs and database files
+home-assistant.log
+home-assistant_v2.db-wal
+home-assistant_v2.db-shm
+home-assistant_v2.db
+
+# Other general ignores from several Home Assistant forums
+!.gitignore
+.git
+*.pid
+*.xml
+*.csr
+*.crt
+*.key
+*.conf
+*.pickle
+*.txt
+*.log
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+*.conf
+*.sqlite
+*.json
+*.token
+lib
+deps
+tts
+secrets.yaml
+secrets
+known_devices.yaml
+.uuid
+ipchange.yaml
+apps/__pycache__/

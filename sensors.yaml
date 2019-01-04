@@ -1,0 +1,15 @@
+- platform: time_date
+  display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+- platform: template
+  sensors:
+    vacuum_status:
+      friendly_name: "Vacuum - Status"
+      value_template: "Status: {{ states.vacuum.xiaomi_vacuum_cleaner.attributes.status }}"
+    vacuum_battery:
+      friendly_name: "Vacuum - Battery"
+      value_template: "{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.battery_level }}"
+      device_class: battery
+      unit_of_measurement: '%'

@@ -1,0 +1,177 @@
+resources:
+  - url: /local/monster-card.js?v=1
+    type: js
+
+title: West Household
+views:
+  - title: Home
+    cards:
+      - type: entity-filter
+        entities:
+          - group.curtis
+          - group.emma
+          - group.karen
+          - group.peter
+        state_filter:
+          - home
+        card:
+          type: glance
+          title: People at Home
+      - type: entity-filter
+        entities:
+          - group.laura
+          - group.tyrone
+          - group.alex
+          - group.josh
+          - group.ketan
+          - device_tracker.melissa_phone_wifi
+        state_filter:
+          - home
+        card:
+          type: glance
+          title: Guest's Currently Over
+      - type: vertical-stack
+        cards:
+        - type: picture-glance
+          title: Front Door
+          entities:
+            - light.front_door_sconce
+          camera_image: camera.front_door
+        - type: picture-glance
+          title: Driveway
+          entities:
+            - light.front_door_sconce
+          camera_image: camera.driveway
+      - type: vertical-stack
+        cards:
+        - type: weather-forecast
+          entity: weather.brisbane_weather
+        - type: iframe
+          title: Live Precipitation Radar
+          url: https://embed.windy.com/embed2.html?lat=-27.633700&lon=153.039120&zoom=8&level=surface&overlay=radar&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=-27.633700&detailLon=153.039120&metricWind=default&metricTemp=default&radarRange=-1
+          aspect_ratio: 100%
+      - type: light
+        entity: light.front_door_sconce
+      - type: light
+        entity: light.kitchen
+      - type: conditional
+        conditions:
+          - entity: vacuum.xiaomi_vacuum_cleaner
+            state_not: 'docked'
+        card:
+          type: glance
+          title: Vacuum Cleaner Control
+          show_name: true
+          show_state: false
+          entities:
+            - entity: sensor.vacuum_status
+              name: Status
+            - entity: vacuum.xiaomi_vacuum_cleaner
+              name: Start
+              tap_action:
+                  action: call-service
+                  service: vacuum.start
+                  service_data:
+                      entity_id: vacuum.xiaomi_vacuum_cleaner
+              icon: mdi:play
+            - entity: vacuum.xiaomi_vacuum_cleaner
+              name: Pause
+              tap_action:
+                  action: call-service
+                  service: vacuum.pause
+                  service_data:
+                      entity_id: vacuum.xiaomi_vacuum_cleaner
+              icon: mdi:pause
+            - entity: vacuum.xiaomi_vacuum_cleaner
+              name: Go Home
+              tap_action:
+                  action: call-service
+                  service: vacuum.return_to_base
+                  service_data:
+                      entity_id: vacuum.xiaomi_vacuum_cleaner
+              icon: mdi:home
+            - entity: vacuum.xiaomi_vacuum_cleaner
+              name: Find
+              tap_action:
+                  action: call-service
+                  service: vacuum.locate
+                  service_data:
+                      entity_id: vacuum.xiaomi_vacuum_cleaner
+              icon: mdi:map-marker
+  - title: Weather
+    cards:
+        - type: weather-forecast
+          entity: weather.brisbane_weather
+        - type: iframe
+          title: Live Precipitation Radar
+          url: https://embed.windy.com/embed2.html?lat=-27.633700&lon=153.039120&zoom=8&level=surface&overlay=radar&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=-27.633700&detailLon=153.039120&metricWind=default&metricTemp=default&radarRange=-1
+          aspect_ratio: 100%
+        - type: iframe
+          title: Wind Radar
+          url: https://embed.windy.com/embed2.html?lat=-27.633700&lon=153.039120&zoom=8&level=surface&overlay=wind&menu=&message=&marker=true&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=-27.633700&detailLon=153.039120&metricWind=default&metricTemp=default&radarRange=-1
+          aspect_ratio: 100%
+        - type: iframe
+          title: Temperature
+          url: https://embed.windy.com/embed2.html?lat=-27.633700&lon=153.039120&zoom=8&level=surface&overlay=temp&menu=&message=&marker=true&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=-27.633700&detailLon=153.039120&metricWind=default&metricTemp=default&radarRange=-1
+          aspect_ratio: 100%
+  - title: Robot Vacuum
+    cards:
+      - type: glance
+        title: Vacuum Cleaner Control
+        show_name: true
+        show_state: false
+        entities:
+          - entity: sensor.vacuum_status
+            name: Status
+          - entity: vacuum.xiaomi_vacuum_cleaner
+            name: Start
+            tap_action:
+                action: call-service
+                service: vacuum.start
+                service_data:
+                    entity_id: vacuum.xiaomi_vacuum_cleaner
+            icon: mdi:play
+          - entity: vacuum.xiaomi_vacuum_cleaner
+            name: Pause
+            tap_action:
+                action: call-service
+                service: vacuum.pause
+                service_data:
+                    entity_id: vacuum.xiaomi_vacuum_cleaner
+            icon: mdi:pause
+          - entity: vacuum.xiaomi_vacuum_cleaner
+            name: Go Home
+            tap_action:
+                action: call-service
+                service: vacuum.return_to_base
+                service_data:
+                    entity_id: vacuum.xiaomi_vacuum_cleaner
+            icon: mdi:home
+          - entity: vacuum.xiaomi_vacuum_cleaner
+            name: Find
+            tap_action:
+                action: call-service
+                service: vacuum.locate
+                service_data:
+                    entity_id: vacuum.xiaomi_vacuum_cleaner
+            icon: mdi:map-marker
+  - title: settings
+    cards:
+      - type: custom:monster-card
+        show_empty: false
+        card:
+          type: entities
+          title: 'On'
+        filter:
+          include:
+            - entity_id: "automation.*"
+              state: "on"
+      - type: custom:monster-card
+        show_empty: false
+        card:
+          type: entities
+          title: 'Off'
+        filter:
+          include:
+            - entity_id: "automation.*"
+              state: "off"

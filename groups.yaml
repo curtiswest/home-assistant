@@ -1,0 +1,80 @@
+################################################################################
+## People Groups
+################################################################################
+all_people:
+  name: 'Presence'
+  entities:
+    - group.curtis
+    - group.karen
+    - group.emma
+
+curtis:
+  name: Curtis
+  entities:
+    - device_tracker.curtis_phone_wifi
+    - device_tracker.curtis_cw_op3
+    - device_tracker.curtis_phone_bt
+
+karen:
+  name: Karen
+  entities:
+    - device_tracker.karen_phone_wifi
+
+emma:
+  name: Emma
+  entities:
+    - device_tracker.emma_phone_wifi
+
+peter:
+  name: Peter
+  entities:
+    - device_tracker.peter_tablet
+
+################################################################################
+## Sensor Groups
+################################################################################
+
+core_devices:
+  name: 'Core Device Status'
+  entities:
+    - device_tracker.xiaomi_gateway
+    - device_tracker.front_door_sconce_light
+
+indoor_environment:
+  name: 'Indoor Enviroment'
+  entities:
+    - sensor.illumination_gateway
+    - sensor.temperature_dining_room
+    - sensor.humidity_dining_room
+    - sensor.pressure_dining_room
+
+outdoor_environment:
+  name: 'Outdoor Enviroment'
+  entities:
+    - weather.brisbane_weather
+
+robovac:
+  name: "Robovac"
+  control: hidden
+  entities:
+    - script.locate_vacuum
+    - vacuum.xiaomi_vacuum_cleaner
+
+################################################################################
+## Room Groups
+################################################################################
+
+curtis_room:
+  name: Curtis' Room
+  entities:
+    - light.curtis_bedroom
+    - binary_sensor.door_curtis_room
+    - binary_sensor.window_curtis_room
+    - switch.curtis_heater
+
+curtis_room_weather:
+  name: Weather in Curtis' Room
+  entities:
+    - sensor.temperature_curtis_room
+    - sensor.humidity_curtis_room
+    - sensor.pressure_curtis_room

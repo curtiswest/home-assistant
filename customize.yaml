@@ -1,0 +1,51 @@
+light.gateway_light_34ce008bda21:
+  friendly_name: Xiaomi Gateway Light
+sensor.humidity_158d0001b7e15a:
+  friendly_name: Humidity (Curtis' Room)
+sensor.pressure_158d0001b7e15a:
+  friendly_name: Pressure (Curtis' Room)
+sensor.temperature_158d0001b7e15a:
+  friendly_name: Temperature (Curtis' Room)
+vacuum.xiaomi_vacuum_cleaner:
+  friendly_name: Xiaomi Vacuum Cleaner
+binary_sensor.door_window_sensor_158d0001dac439:
+  friendly_name: Door (Curtis' Room)
+binary_sensor.door_window_sensor_158d0001dbc8c4:
+  friendly_name: Window (Curtis' Room)
+binary_sensor.motion_sensor_158d0001ad6691:
+  friendly_name: Motion (Curtis' Room)
+sensor.illumination_34ce008bda21:
+  friendly_name: Illumination (Dining Room - Gateway)
+sensor.illumination_158d0001ad6691:
+  friendly_name: Illumination (Curtis' Room)
+light.yeelight_rgb_34ce008b4f37:
+  friendly_name: 3D Printer Light
+light.main_light:
+  friendly_name: Light (Curtis' Room)
+binary_sensor.motion_sensor_158d0001aa3109:
+  friendly_name: Mailbox Sensor
+binary_sensor.switch_158d0001a6674b:
+  friendly_name: Doorbell Switch
+group.curtis:
+  entity_picture: /local/img/curtis.jpg
+group.karen:
+  entity_picture: '"/local/img/karen.jpg"'
+group.emma:
+  entity_picture: '"/local/img/emma.jpg"'
+device_tracker.curtis_cw_op3:
+  friendly_name: Curtis' OnePlus 3 (MQTT)
+  icon: mdi:crosshairs-gps
+device_tracker.curtis_phone_wifi:
+  friendly_name: Curtis' OnePlus 3 (WiFi)
+  icon: mdi:wifi
+device_tracker.curtis_phone_bt:
+  friendly_name: Curtis' OnePlus 3 (Bluetooth)
+  icon: mdi:bluetooth
+device_tracker.e0d55e2b5534:
+  friendly_name: Curtis' Computer
+  icon: mdi:monitor
+device_tracker.e0d55e2b5532:
+  friendly_name: Curtis' Computer
+  icon: mdi:monitor
+group.peter:
+  entity_picture: '"/local/img/peter.jpg"'

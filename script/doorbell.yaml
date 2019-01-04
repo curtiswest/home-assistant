@@ -1,0 +1,29 @@
+doorbell_script:
+  sequence:
+    - alias: "Ring on Xiaomi Gateway"
+      service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret xiaomi_aqara_gateway_mac
+        ringtone_id: 10
+        ringtone_vol: 10
+    - alias: "Ring on Karen's Google Home Mini"
+      service: media_player.play_media
+      data:
+        entity_id: "media_player.all_google_homes"
+        media_content_id: "http://192.168.1.10:8123/local/doorbell.mp3"
+        media_content_type: "audio/mp3"
+    - alias: "Send Telegram Text Messages"
+      service: telegram_bot.send_message
+      data:
+        message: "Ding, dong! Someone pressed the doorbell."
+        target:
+        - !secret curtis_telegram_chat_id
+        - !secret karen_telegram_chat_id
+    - alias: "Send Telegram Pictures"
+      service: telegram_bot.send_photo
+      data:
+        url: !secret front_door_authed_url
+        caption: "Picture of the front door now."
+        target:
+        - !secret curtis_telegram_chat_id
+        - !secret karen_telegram_chat_id

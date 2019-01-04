@@ -1,0 +1,17 @@
+- alias: "Turn on/off garage light after motion"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_garage
+  condition:
+    - condition: or
+      conditions:
+      - condition: sun
+        after: sunset
+        after_offset: "-00:15:00"
+      - condition: sun
+        before: sunrise
+        before_offset: "00:30:00"
+  action:
+      service_template: "light.turn_{{ states('binary_sensor.motion_garage') }}"
+      data:
+        entity_id: light.garage

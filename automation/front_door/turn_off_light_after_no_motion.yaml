@@ -1,0 +1,23 @@
+alias: "Turn off front door light after no motion"
+trigger:
+  - platform: state
+    entity_id: light.front_door_sconce
+    to: 'on'
+    for:
+      minutes: 3
+  - platform: state
+    entity_id: binary_sensor.motion_front_door
+    to: 'off'
+    for:
+      minutes: 3
+condition:
+  - platform: state
+    entity_id: binary_sensor.motion_front_door
+    to: 'off'
+    for:
+      minutes: 3
+action:
+  - service: light.turn_off
+    data:
+      entity_id: light.front_door_sconce
+      transition: 3

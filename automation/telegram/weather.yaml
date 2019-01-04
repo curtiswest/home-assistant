@@ -1,0 +1,15 @@
+alias: 'TelegramBot /weather'
+trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: '/weather'
+action:
+  - service: telegram_bot.send_message
+    data_template:
+      target: '{{ trigger.event.data.user_id }}'
+      message:  "It's currently {{ states('sensor.temperature_dining_room') }}°C, and {{ states('sensor.humidity_dining_room') }}% humidity at home inside, and {{ states('sensor.pws_temp_c') }}°C, and {{ states('sensor.pws_relative_humidity') }}% humidity outside."
+      keyboard:
+        - '/weather'
+        - '/front_door_camera'
+        - '/driveway_camera'

@@ -1,0 +1,9 @@
+alias: "Lightswitch in Curtis' room"
+trigger:
+  - platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      entity_id: binary_sensor.curtis_light_switch_1
+action:
+  service: light.toggle
+  entity_id: light.curtis_bedroom

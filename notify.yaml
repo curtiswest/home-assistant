@@ -1,0 +1,12 @@
+- platform: telegram
+  name: Curtis
+  chat_id: !secret curtis_telegram_chat_id
+- platform: telegram
+  name: Karen
+  chat_id: !secret karen_telegram_chat_id
+# TODO: implement a more stable solution for broadcasting over Google home.
+#       this may be better off waiting until Google decides to sync home
+#       broadcasts, as currently they arrive at each GH at different times.
+# - platform: rest
+#   name: Google Home
+#   resource: http://192.168.1.10:5000/broadcast_message

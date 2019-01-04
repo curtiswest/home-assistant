@@ -1,0 +1,163 @@
+homeassistant:
+  name: Home
+  latitude: !secret home_latitude
+  longitude: !secret home_longitude
+  elevation: 44
+  unit_system: metric
+  time_zone: Australia/Brisbane
+  customize: !include customize.yaml
+  auth_providers:
+     - type: homeassistant
+
+####################################################################################################
+## Core Home Assistant
+####################################################################################################
+
+## UI-related components ###########################################################################
+frontend:
+
+config:
+
+lovelace:
+  mode: yaml
+
+## Access #################################################################################
+http:
+  api_password: !secret api_password
+
+api:
+
+## System ###########################################################################################
+updater:
+
+discovery:
+
+history:
+
+recorder:
+  purge_keep_days: 3
+
+mqtt:
+  broker: 192.168.1.10
+  port: 1883 #8883
+  username: sensors
+  password: !secret mqtt_sensors_passwd
+  client_id: "homeassistant"
+
+logbook:
+
+sun:
+
+# Text to speech
+tts:
+  - platform: google
+
+cast:
+
+####################################################################################################
+## External Bots
+####################################################################################################
+
+# google_assistant:
+  # project_id: !secret ga_project_id
+  # client_id: !secret ga_client_id
+  # access_token: !secret ga_access_token
+  # agent_user_id: !secret curtis_email
+  # api_key: !secret ga_api_key
+  # exposed_domains:
+  #   - switch
+  #   - light
+  #   - group
+
+telegram_bot:
+  - platform: webhooks
+    api_key: !secret telegram_bot_api_key
+    url: !secret https_external_url
+    trusted_networks:
+      - 192.168.1.0/24
+      - 172.17.0.0/24
+    allowed_chat_ids:
+      - !secret curtis_telegram_chat_id
+      - !secret karen_telegram_chat_id
+
+####################################################################################################
+## Device Trackers
+####################################################################################################
+
+device_tracker:
+  - platform: unifi
+    host: 192.168.1.10
+    port: 8443
+    username: !secret unifi_username
+    password: !secret unifi_password
+    verify_ssl: false
+  # TODO: develop/deploy Bluetooth -> MQTT device tracking to workaround server not having BT (distributed)
+  # Here's a project that looks relevant:
+  # https://github.com/andrewjfreyer/monitor
+  # - platform: mqtt
+  #   devices:
+  #     curtis_phone_bt: 'raspi_slave_hass/device_tracker/curtis_oneplus_3_bt'
+
+
+####################################################################################################
+## Cameras
+####################################################################################################
+
+camera:
+    - platform: generic
+      still_image_url: !secret front_door_authed_url
+      framerate: 1
+      name: Front Door
+    - platform: generic
+      still_image_url: !secret driveway_authed_url
+      framerate: 1
+      name: Driveway
+
+####################################################################################################
+## Sensors & Sensor Platforms
+####################################################################################################
+
+sensor: !include sensors.yaml
+binary_sensor: !include binary_sensor.yaml
+
+input_boolean:
+  curtis_sleeping:
+    name: Curtis Sleeping
+    icon: mdi:hotel
+
+####################################################################################################
+## Misc. One Off Components
+####################################################################################################
+
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_aqara_gateway_key
+      host: 192.168.1.16
+
+vacuum:
+  - platform: xiaomi_miio
+    host: 192.168.1.211
+    token: !secret xiaomi_miio_vacuum_token
+
+lifx:
+  light:
+    server: 192.168.1.10
+    broadcast: 192.168.1.255
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_api_key
+    name: Brisbane Weather
+
+light:
+
+####################################################################################################
+## Remaining Groups
+####################################################################################################
+
+switch: !include switch.yaml
+notify: !include notify.yaml
+group: !include groups.yaml
+automation: !include_dir_list automation
+script: !include_dir_merge_named script
