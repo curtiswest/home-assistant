@@ -40,8 +40,8 @@ recorder:
 mqtt:
   broker: 192.168.1.10
   port: 1883 #8883
-  username: sensors
-  password: !secret mqtt_sensors_passwd
+  username: !secret mqtt_username
+  password: !secret mqtt_password
   client_id: "homeassistant"
 
 logbook:
