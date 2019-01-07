@@ -40,7 +40,7 @@ views:
         - type: picture-glance
           title: Driveway
           entities:
-            - light.front_door_sconce
+            - light.garage
           camera_image: camera.driveway
       - type: vertical-stack
         cards:
@@ -54,6 +54,8 @@ views:
         entity: light.front_door_sconce
       - type: light
         entity: light.kitchen
+      - type: light
+        entity: light.lounge_room
       - type: conditional
         conditions:
           - entity: vacuum.xiaomi_vacuum_cleaner
@@ -175,3 +177,10 @@ views:
           include:
             - entity_id: "automation.*"
               state: "off"
+  - title: dev
+    cards:
+      - type: glance
+        entities:
+          - sensor.bt_sensor_front_for_curtis_oneplus_6
+          - group.curtis
+          - binary_sensor.bayesian_binary_sensor
