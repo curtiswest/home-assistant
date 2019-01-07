@@ -159,5 +159,5 @@ light:
 switch: !include switch.yaml
 notify: !include notify.yaml
 group: !include groups.yaml
-automation: !include_dir_list automation
+automation: !include_dir_merge_list automation
 script: !include_dir_merge_named script
