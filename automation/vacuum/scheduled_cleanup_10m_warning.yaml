@@ -1,15 +1,15 @@
-alias: "Vacuum scheduled cleanup's 10 minute warning"
-trigger:
-  platform: time
-  at: '13:05:00'
-condition:
-  condition: time
-  weekday:
-    - mon
-    - wed
-    - fri
-action:
-  - service: tts.google_say
-    data:
-      entity: media_player.announcements
-      message: "The robot vacuum cleaner will start in about 10 minutes."
+- alias: "Vacuum scheduled cleanup's 10 minute warning"
+  trigger:
+    platform: time
+    at: '13:05:00'
+  condition:
+    condition: time
+    weekday:
+      - mon
+      - wed
+      - fri
+  action:
+    - service: tts.google_say
+      entity_id: media_player.all_google_homes
+      data:
+        message: "The robot vacuum cleaner will start in about 10 minutes."

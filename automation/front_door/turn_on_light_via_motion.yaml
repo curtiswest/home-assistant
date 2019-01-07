@@ -1,24 +1,24 @@
-alias: "Turn on front door light from motion"
-trigger:
-  - platform: state
-    entity_id: binary_sensor.motion_front_door
-    to: 'on'
-condition:
-  - condition: or
-    conditions:
-    - condition: numeric_state
-      entity_id: sensor.illumination_front_door
-      below: 125
-    - condition: sun
-      after: sunset
-      after_offset: "-00:15:00"
-    - condition: sun
-      before: sunrise
-      before_offset: "00:15:00"
-action:
-  - service: light.turn_on
-    data:
-      entity_id: light.front_door_sconce
-      transition: 1
-      brightness: 255
-      kelvin: 3500
+- alias: "Turn on front door light from motion"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_front_door
+      to: 'on'
+  condition:
+    - condition: or
+      conditions:
+      - condition: numeric_state
+        entity_id: sensor.illumination_front_door
+        below: 125
+      - condition: sun
+        after: sunset
+        after_offset: "-00:15:00"
+      - condition: sun
+        before: sunrise
+        before_offset: "00:15:00"
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.front_door_sconce
+        transition: 1
+        brightness: 255
+        kelvin: 3500

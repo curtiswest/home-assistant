@@ -1,15 +1,15 @@
-alias: 'TelegramBot /start'
-trigger:
-  - platform: event
-    event_type: telegram_command
-    event_data:
-      command: '/start'
-action:
-  - service: telegram_bot.send_message
-    data_template:
-      target: '{{ trigger.event.data.user_id }}'
-      message: "Hello, I'm Home Assistant! Choose one of the commands below."
-      keyboard:
-        - '/weather'
-        - '/front_door_camera'
-        - '/driveway_camera'
+- alias: 'TelegramBot /start'
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/start'
+  action:
+    - service: telegram_bot.send_message
+      data_template:
+        target: '{{ trigger.event.data.user_id }}'
+        message: "Hello, I'm Home Assistant! Choose one of the commands below."
+        keyboard:
+          - '/weather'
+          - '/front_door_camera'
+          - '/driveway_camera'

@@ -1,12 +1,12 @@
-alias: "Toggle front door light via button"
-trigger:
-  - platform: event
-    event_type: xiaomi_aqara.click
-    event_data:
-      click_type: single
-      entity_id: binary_sensor.switch_front_door_sconce
-action:
-  - service: light.toggle
-    data:
-      entity_id: light.front_door_sconce
-      transition: 2
+- alias: "Toggle front door light via button"
+  trigger:
+    - platform: event
+      event_type: xiaomi_aqara.click
+      event_data:
+        click_type: single
+        entity_id: binary_sensor.switch_front_door_sconce
+  action:
+    - service: light.toggle
+      data:
+        entity_id: light.front_door_sconce
+        transition: 2

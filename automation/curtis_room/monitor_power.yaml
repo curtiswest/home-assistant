@@ -1,8 +1,22 @@
-- alias: "Toggle Curtis' monitor power based on desktop"
+- alias: "Turn on Curtis' monitor power when desktop turns on"
   trigger:
     - platform: state
       entity_id: binary_sensor.curtis_desktop
+      to: 'on'
+      from: 'off'
   action:
-    service_template: "switch.turn_{{ states('binary_sensor.curtis_desktop') }}"
+    service: switch.turn_on
+    data:
+      entity_id: switch.curtis_monitor_power
+
+
+- alias: "Turn off Curtis' monitor power when desktop turns off"
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.curtis_desktop
+      to: 'off'
+      from: 'on'
+  action:
+    service: switch.turn_off
     data:
       entity_id: switch.curtis_monitor_power

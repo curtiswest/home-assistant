@@ -1,23 +1,23 @@
-alias: 'TelegramBot /front_door_camera'
-trigger:
-  - platform: event
-    event_type: telegram_command
-    event_data:
-      command: '/front_door_camera'
-action:
-  - service: telegram_bot.send_message
-    data_template:
-      target: '{{ trigger.event.data.user_id }}'
-      message:  "Front door pic coming right up, {{ trigger.event.data.from_first }}!"
-      keyboard:
-        - '/weather'
-        - '/front_door_camera'
-        - '/driveway_camera'
-  - service: telegram_bot.send_photo
-    data_template:
-      url: !secret front_door_authed_url
-      target: '{{ trigger.event.data.user_id }}'
-      keyboard:
-        - '/weather'
-        - '/front_door_camera'
-        - '/driveway_camera'
+- alias: 'TelegramBot /front_door_camera'
+  trigger:
+    - platform: event
+      event_type: telegram_command
+      event_data:
+        command: '/front_door_camera'
+  action:
+    - service: telegram_bot.send_message
+      data_template:
+        target: '{{ trigger.event.data.user_id }}'
+        message:  "Front door pic coming right up, {{ trigger.event.data.from_first }}!"
+        keyboard:
+          - '/weather'
+          - '/front_door_camera'
+          - '/driveway_camera'
+    - service: telegram_bot.send_photo
+      data_template:
+        url: !secret front_door_authed_url
+        target: '{{ trigger.event.data.user_id }}'
+        keyboard:
+          - '/weather'
+          - '/front_door_camera'
+          - '/driveway_camera'

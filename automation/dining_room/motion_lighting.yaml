@@ -13,17 +13,13 @@
         entity_id: light.xiaomi_gateway
         brightness: 255
 
-- alias: "Turn on dining room light after no motion"
+- alias: "Turn off dining room light after no motion"
   trigger:
     - platform: state
       entity_id: binary_sensor.motion_sensor_dining_room
       to: 'off'
       for:
         minutes: 1
-  condition:
-    - condition: state
-      entity_id: light.xiaomi_gateway
-      state: 'on'
   action:
     - service: light.turn_off
       data:

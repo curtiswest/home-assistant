@@ -31,6 +31,27 @@
         entity_id: light.curtis_bedroom
         transition: 3
 
+- alias: "Presence lighting for Curtis, sunset"
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-01:00:00"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.curtis_sleeping
+        state: 'off'
+      - condition: state
+        entity_id: group.curtis
+        state: 'home'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.curtis_bedroom
+        transition: 120
+
+
 - alias: 'Action lighting for Curtis, open/close door at night'
   trigger:
     - platform: state
