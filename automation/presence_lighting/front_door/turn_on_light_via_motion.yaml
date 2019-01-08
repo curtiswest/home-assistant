@@ -3,6 +3,9 @@
     - platform: state
       entity_id: binary_sensor.motion_front_door
       to: 'on'
+    - platform: state
+      entity_id: binary_sensor.front_door_cam_line_crossing
+      to: 'on'
   condition:
     - condition: or
       conditions:
