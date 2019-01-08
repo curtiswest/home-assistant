@@ -17,6 +17,7 @@
       data:
         entity_id: light.curtis_bedroom
         transition: 3
+        brightness: 255
 
 - alias: "Presence lighting for Curtis, leave home"
   trigger:
@@ -50,6 +51,7 @@
       data:
         entity_id: light.curtis_bedroom
         transition: 120
+        brightness: 255
 
 
 - alias: 'Action lighting for Curtis, open/close door at night'

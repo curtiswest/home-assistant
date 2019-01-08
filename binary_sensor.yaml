@@ -12,7 +12,23 @@
   host: 192.168.1.231
   username: admin
   password: Admin123
-# - platform: octoprint
-#   monitored_conditions:
-#     - Printing
-#     - Printing Error
+- platform: bayesian
+  name: Curtis Presence Bayesian
+  prior: 0.625
+  probability_threshold: 0.84
+  observations:
+    - entity_id: 'sensor.bt_sensor_front_for_curtis_oneplus_6'
+      prob_given_true: 0.97
+      prob_given_false: 0.01
+      platform: 'numeric_state'
+      above: 70
+    - entity_id: 'device_tracker.curtis_phone_wifi'
+      prob_given_true: 0.85
+      prob_given_false: 0.4
+      platform: 'state'
+      to_state: 'home'
+    - entity_id: 'device_tracker.curtis_phone_ping'
+      prob_given_true: 0.97
+      prob_given_false: 0.02
+      platform: 'state'
+      to_state: 'on'

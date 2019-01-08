@@ -11,9 +11,10 @@ all_people:
 curtis:
   name: Curtis
   entities:
-    - device_tracker.curtis_phone_wifi
-    - device_tracker.curtis_cw_op3
-    - device_tracker.curtis_phone_bt
+    - sensor.curtis_bayesian
+    # - device_tracker.curtis_phone_wifi
+    # - device_tracker.curtis_cw_op3
+    # - device_tracker.curtis_phone_bt
 
 karen:
   name: Karen

@@ -91,6 +91,12 @@ device_tracker:
     username: !secret unifi_username
     password: !secret unifi_password
     verify_ssl: false
+  - platform: ping
+    name: Curtis Phone Ping
+    host: 192.168.1.205
+    count: 3
+    scan_interval: 45
+    device_class: connectivity
   # TODO: develop/deploy Bluetooth -> MQTT device tracking to workaround server not having BT (distributed)
   # Here's a project that looks relevant:
   # https://github.com/andrewjfreyer/monitor
