@@ -184,3 +184,7 @@ views:
           - sensor.bt_sensor_front_for_curtis_oneplus_6
           - group.curtis
           - binary_sensor.bayesian_binary_sensor
+          - binary_sensor.driveway_cam_line_crossing
+          - binary_sensor.driveway_cam_motion
+          - binary_sensor.front_door_cam_line_crossing
+          - binary_sensor.front_door_cam_motion
